@@ -39,9 +39,10 @@ module.exports = function(theaters, leavingTime, timeArray) {
 
         if (minTargetTime <= convertedShowTime && convertedShowTime <= maxTargetTime) {
           //extract imdb id from url
-          var imdbArr = movie.imdb.split('/');
-          var imdb = imdbArr[imdbArr.length - 2];
-          results.push({
+          if (movie.imdb !== false) {
+            var imdbArr = movie.imdb.split('/');
+            var imdb = imdbArr[imdbArr.length - 2];
+            results.push({
             id: imdb,
             dateObjectShowTime: convertedShowTime,
             showTime: showtime,
@@ -52,6 +53,9 @@ module.exports = function(theaters, leavingTime, timeArray) {
             trailerLink: movie.trailer,
             theaterAddress: theater.address,
             rating: movie.rating});
+          }
+          
+          
         }
       });
     });
